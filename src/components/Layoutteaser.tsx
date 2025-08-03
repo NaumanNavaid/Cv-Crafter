@@ -22,7 +22,7 @@ const LayoutTeaser = () => {
             <CardContent className="p-4">
               <div className="rounded-md overflow-hidden border border-gray-200 shadow">
                 <Image
-                  src="/corporate-classic-preview.png"
+                  src="/corporate-classic.png"
                   alt="Corporate Classic Layout"
                   width={400}
                   height={500}

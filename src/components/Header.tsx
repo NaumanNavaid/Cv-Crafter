@@ -14,7 +14,7 @@ const Header = () => {
         {/* Logo */}
         <div className="flex items-center">
           <Image
-            src="/logo.png" // Replace with your actual logo path
+            src="/Logo.png" // Replace with your actual logo path
             alt="CV Crafter Logo"
             width={50}
             height={50}
