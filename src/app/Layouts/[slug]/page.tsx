@@ -1,7 +1,12 @@
 import Image from "next/image";
-import { notFound } from "next/navigation"; // ✅ Required for 404 behavior
+import { notFound } from "next/navigation";
 
-// 🔼 Move layoutData above everything so it can be used in both metadata + page
+// Define the proper types for Next.js 15
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+// Move layoutData above everything so it can be used in both metadata + page
 const layoutData: Record<
   string,
   { name: string; image: string; description: string }
@@ -38,17 +43,19 @@ const layoutData: Record<
   },
 };
 
-// ✅ Dynamic metadata based on slug
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const layout = layoutData[params.slug];
+// ✅ Dynamic metadata based on slug - NOW ASYNC
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params; // Await the params Promise
+  const layout = layoutData[slug];
   return {
     title: layout ? layout.name : "Layout Not Found",
   };
 }
 
-// ✅ Page component
-export default function LayoutDetailPage({ params }: { params: { slug: string } }) {
-  const layout = layoutData[params.slug];
+// ✅ Page component - NOW ASYNC
+export default async function LayoutDetailPage({ params }: PageProps) {
+  const { slug } = await params; // Await the params Promise
+  const layout = layoutData[slug];
 
   if (!layout) {
     notFound(); // Show 404 page if slug doesn't match
@@ -69,4 +76,11 @@ export default function LayoutDetailPage({ params }: { params: { slug: string } 
       </div>
     </section>
   );
+}
+
+// Optional: Generate static params for better performance
+export async function generateStaticParams() {
+  return Object.keys(layoutData).map((slug) => ({
+    slug,
+  }));
 }
