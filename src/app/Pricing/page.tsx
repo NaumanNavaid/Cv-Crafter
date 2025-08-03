@@ -87,7 +87,7 @@ const PricingPage = () => {
                         To place your order, simply reach out via WhatsApp. Payments can be made through Easypaisa, JazzCash, or Bank Transfer.
                     </p>
                     <a
-                        href="https://wa.me/923202049735"
+                        href="https://wa.me/923091273446"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-block bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg transition"
