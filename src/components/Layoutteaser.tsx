@@ -38,7 +38,7 @@ const LayoutTeaser = () => {
                   Timeless and professional design ideal for corporate roles.
                 </p>
 
-                <Link href="/layouts">
+                <Link href="/Layouts">
                   <Button variant="default" className="w-full">
                     Preview Layouts
                   </Button>
