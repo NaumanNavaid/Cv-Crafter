@@ -11,6 +11,7 @@ const Page = () => {
   return (
     <div className="bg-gradient-to-r from-indigo-100 via-white to-indigo-100 min-h-screen">
       <main>
+        <head><meta name="google-site-verification" content="6qojGTrZXFpTN3bK8cBDV86dxQ_HPmIMcvOTuYDfqE8" /></head>
         <Hero />
         <FeaturesSection />
         <Steps/>
