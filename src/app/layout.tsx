@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     "CV Crafter helps you build modern, ATS-friendly resumes and cover letters with customizable templates. Export to PDF instantly and stand out in job applications.",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
