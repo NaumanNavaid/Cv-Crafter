@@ -12,18 +12,17 @@ const Page = () => {
   return (
     <div className="bg-gradient-to-r from-indigo-100 via-white to-indigo-100 min-h-screen">
       <Head>
+        {/* ✅ Google verification */}
         <meta
           name="google-site-verification"
           content="6qojGTrZXFpTN3bK8cBDV86dxQ_HPmIMcvOTuYDfqE8"
         />
 
-        {/* Browser favicon */}
+        {/* ✅ Favicon + Logo (use lowercase filenames for safety) */}
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-
-        {/* High-res logo */}
         <link rel="icon" href="/Logo.png" sizes="512x512" type="image/png" />
 
-        {/* Schema markup */}
+        {/* ✅ Organization Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
