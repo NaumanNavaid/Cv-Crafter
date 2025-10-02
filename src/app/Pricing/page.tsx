@@ -51,15 +51,29 @@ const plans = [
 
 const PricingPage = () => {
     return (
-        <main className="bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+        <main className="py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-4xl font-bold text-center text-gray-800 mb-10">Our Pricing Plans</h1>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {plans.map((plan, index) => (
-                        <Card key={index} className="rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <Card 
+                            key={index} 
+                            className={`rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ${
+                                plan.name === 'Ultimate' 
+                                    ? 'border-2 border-yellow-400 bg-gradient-to-b from-yellow-50 to-white transform scale-105 z-10' 
+                                    : ''
+                            }`}
+                        >
                             <CardContent className="p-6">
-                                <h2 className="text-2xl font-semibold text-gray-800 mb-2">{plan.name}</h2>
+                                <h2 className={`text-2xl font-semibold mb-2 ${
+                                    plan.name === 'Ultimate' ? 'text-yellow-600 font-bold' : 'text-gray-800'
+                                }`}>
+                                    {plan.name}
+                                    {plan.name === 'Ultimate' && (
+                                        <span className="ml-2 inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">PREMIUM</span>
+                                    )}
+                                </h2>
                                 <p className="text-xl text-blue-600 font-bold mb-4">{plan.price}</p>
 
                                 <ul className="text-gray-700 space-y-2">
@@ -84,15 +98,13 @@ const PricingPage = () => {
                 <div className="mt-12 text-center">
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">How to Order</h2>
                     <p className="text-gray-600 max-w-xl mx-auto mb-6">
-                        To place your order, simply reach out via WhatsApp. Payments can be made through Easypaisa, JazzCash, or Bank Transfer.
+                        To place your order, fill out our resume builder form with your details. We'll craft your resume and contact you via WhatsApp. Payments can be made through Easypaisa, JazzCash, or Bank Transfer.
                     </p>
                     <a
-                        href="https://wa.me/923091273446"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href="/resume-builder"
                         className="inline-block bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg transition"
                     >
-                        Message on WhatsApp
+                        Build Your Resume
                     </a>
                 </div>
 

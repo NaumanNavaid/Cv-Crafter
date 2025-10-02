@@ -4,13 +4,14 @@ import Hero from '@/components/Hero'
 import FeaturesSection from '@/components/Featuressection'
 import Steps from '@/components/Steps'
 import PricingTeaser from '@/components/PricingTeaser'
-import FaqTeaser from '@/components/FaqTeaser'
 import LayoutTeaser from '@/components/Layoutteaser'
 import WhatsAppContact from '@/components/whatsapp'
+import TestimonialsSection from '@/components/Testimonials'
+import FAQSection from '@/components/FAQSection'
 
 const Page = () => {
   return (
-    <div className="bg-gradient-to-r from-indigo-100 via-white to-indigo-100 min-h-screen">
+    <div className="bg-white min-h-screen">
       <Head>
         {/* ✅ Google verification */}
         <meta
@@ -37,13 +38,14 @@ const Page = () => {
         />
       </Head>
 
-      <main>
+      <main className="bg-white">
         <Hero />
         <FeaturesSection />
         <Steps />
+        <TestimonialsSection />
         <PricingTeaser />
         <LayoutTeaser />
-        <FaqTeaser />
+        <FAQSection />
         <WhatsAppContact />
       </main>
     </div>

@@ -1,24 +1,36 @@
 'use client';
 
 import React from 'react';
+import { Button } from '@/components/ui/button';
+import { MessageCircle } from 'lucide-react';
 
 const WhatsAppContact = () => {
   return (
-    <section className="py-20 px-4 max-w-xl mx-auto text-center bg-white shadow-md rounded">
-      <h2 className="text-3xl font-bold mb-6 text-gray-800">
-        Want to send me your resume info?
-      </h2>
-      <p className="mb-8 text-gray-600">
-        Just send me a message on WhatsApp! I’ll get back to you ASAP.
-      </p>
-      <a
-        href="https://wa.me/923091273446"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block bg-green-600 text-white px-8 py-4 rounded-lg text-xl font-semibold hover:bg-green-700 transition"
-      >
-        Chat on WhatsApp 📲
-      </a>
+    <section className="section bg-[hsl(var(--professional-secondary))]">
+      <div className="max-w-3xl mx-auto px-4 text-center">
+        <div className="card rounded-2xl shadow-professional p-8 md:p-12">
+          <div className="flex justify-center mb-6">
+            <div className="bg-[hsl(var(--professional-accent)/0.1)] p-4 rounded-full">
+              <MessageCircle className="h-10 w-10 text-[hsl(var(--professional-accent))]" />
+            </div>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[hsl(var(--professional-primary))]">
+            Ready to Get Started?
+          </h2>
+          <p className="text-[hsl(var(--muted-foreground))] mb-8 max-w-2xl mx-auto">
+            Have questions or ready to send your resume details? Contact us directly on WhatsApp for immediate assistance.
+          </p>
+          <a
+            href="https://wa.me/923091273446"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button size="lg">
+              Chat on WhatsApp
+            </Button>
+          </a>
+        </div>
+      </div>
     </section>
   );
 };

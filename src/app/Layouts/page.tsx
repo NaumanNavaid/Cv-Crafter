@@ -53,31 +53,31 @@ export default function LayoutsPage() {
           {layouts.map((layout) => (
             <div
               key={layout.slug}
-              className="border border-gray-200 shadow-lg rounded-md overflow-hidden"
+              className="border border-gray-200 shadow-lg rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <div className="relative">
+              <div className="relative overflow-hidden">
                 <Image
                   src={layout.image}
                   alt={layout.name}
                   width={400}
                   height={550}
-                  className="w-full h-auto filter blur-sm"
+                  className="w-full h-auto object-cover transition-transform duration-500 hover:scale-105"
+                  priority={false}
                 />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="bg-white/70 px-3 py-1 rounded text-gray-700 text-sm">
-                    Preview Locked
-                  </span>
-                </div>
               </div>
-              <div className="p-4">
-                <h3 className="font-semibold text-gray-700 mb-2">
+              <div className="p-4 bg-white">
+                <h3 className="font-semibold text-gray-800 mb-2 text-lg">
                   {layout.name}
                 </h3>
                 <Link
                   href={`/Layouts/${layout.slug}`}
-                  className="text-blue-500 hover:underline text-sm"
+                  className="text-indigo-600 hover:text-indigo-800 font-medium inline-flex items-center gap-1"
+                  aria-label={`View details for ${layout.name} layout`}
                 >
                   View Full Layout
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </Link>
               </div>
             </div>
