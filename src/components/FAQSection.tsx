@@ -68,7 +68,7 @@ export default function FAQSection() {
                 aria-expanded={openIndex === index}
                 aria-controls={`faq-content-${index}`}
               >
-                <h3 className="text-lg font-medium text-[hsl(var(--professional-dark))]">{faq.question}</h3>
+                <h3 className="text-lg  font-medium text-[hsl(var(--professional-dark))]">{faq.question}</h3>
                 {openIndex === index ? 
                   <ChevronUp className="h-5 w-5 text-[hsl(var(--professional-primary))]" /> : 
                   <ChevronDown className="h-5 w-5 text-[hsl(var(--professional-primary))]" />
@@ -81,7 +81,7 @@ export default function FAQSection() {
                   openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                 }`}
               >
-                <div className="p-6 pt-0 text-[hsl(var(--muted-foreground))]">
+                <div className="p-6 pt-3 text-[hsl(var(--muted-foreground))]">
                   {faq.answer}
                 </div>
               </div>

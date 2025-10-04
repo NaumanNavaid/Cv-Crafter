@@ -53,15 +53,15 @@ export default function LayoutsPage() {
           {layouts.map((layout) => (
             <div
               key={layout.slug}
-              className="border border-gray-200 shadow-lg rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+              className="border border-gray-200 shadow-lg rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full"
             >
-              <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden aspect-[3/4] flex items-center justify-center bg-white flex-grow">
                 <Image
                   src={layout.image}
                   alt={layout.name}
-                  width={400}
-                  height={550}
-                  className="w-full h-auto object-cover transition-transform duration-500 hover:scale-105"
+                  width={300}
+                  height={400}
+                  className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
                   priority={false}
                 />
               </div>

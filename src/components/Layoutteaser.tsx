@@ -70,15 +70,15 @@ const LayoutTeaser = () => {
               {layouts.map((layout, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                   <div className="p-2">
-                    <Card className="h-full card shadow-professional hover:shadow-lg transition-shadow">
-                      <CardContent className="p-4 flex flex-col items-center">
-                        <div className="rounded-md overflow-hidden border border-[hsl(var(--border))] shadow-professional w-full">
+                    <Card className="h-full card shadow-professional hover:shadow-lg transition-shadow flex flex-col">
+                      <CardContent className="p-4 flex flex-col items-center flex-grow">
+                        <div className="rounded-md overflow-hidden border border-[hsl(var(--border))] shadow-professional w-full aspect-[3/4] flex items-center justify-center bg-white">
                           <Image
                             src={layout.image}
                             alt={layout.name}
-                            width={400}
-                            height={500}
-                            className="w-full h-auto object-cover"
+                            width={300}
+                            height={400}
+                            className="w-full h-full object-contain"
                           />
                         </div>
 

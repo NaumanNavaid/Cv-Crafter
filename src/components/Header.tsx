@@ -33,17 +33,16 @@ const Header = () => {
 
   return (
     <header className="w-full bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center">
           <Image
             src="/Logo.png" // Replace with your actual logo path
             alt="CV Crafter Logo"
-            width={50}
-            height={50}
-            className="mr-2"
+            width={100}
+            height={100}
+            className="mr-0 object-cover py-1"
           />
-          <span className="font-bold text-xl text-gray-800">CV Crafter</span>
         </div>
 
         {/* Desktop Menu */}

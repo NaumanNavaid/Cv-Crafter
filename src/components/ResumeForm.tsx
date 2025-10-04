@@ -62,6 +62,31 @@ export default function ResumeForm() {
     }
   };
 
+  const handleTierChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Clear errors when tier changes
+    if (errors[name]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+    
+    // If Premium tier is selected, automatically select all layouts
+    if (value === 'Premium') {
+      setSelectedLayouts(['Corporate Classic', 'Business Professional', 'Modern Executive', 'Leadership Suite', 'Minimal Clean', 'Creative Vibrant']);
+    } else {
+      // For other tiers, clear selections if they exceed the limit
+      const maxLayouts = getMaxLayoutsForTier(value);
+      if (selectedLayouts.length > maxLayouts) {
+        setSelectedLayouts(selectedLayouts.slice(0, maxLayouts));
+      }
+    }
+  };
+
   const getMaxLayoutsForTier = (tier: string): number => {
     switch(tier) {
       case 'Basic': return 1;
@@ -139,6 +164,12 @@ Thank you for your submission! Our expert will create your resume shortly.
     const maxLayouts = getMaxLayoutsForTier(formData.tier);
     if (selectedLayouts.length === 0 && formData.tier !== 'Ultimate') {
       setErrors({ layout: `Please select at least 1 layout` });
+      return;
+    }
+    
+    // Ensure user hasn't selected more layouts than their tier allows
+    if (selectedLayouts.length > maxLayouts) {
+      setErrors({ layout: `You can only select up to ${maxLayouts} layout${maxLayouts !== 1 ? 's' : ''} for ${formData.tier} tier` });
       return;
     }
 
@@ -346,7 +377,7 @@ Thank you for your submission! Our expert will create your resume shortly.
             id="tier"
             name="tier"
             value={formData.tier}
-            onChange={handleChange}
+            onChange={handleTierChange}
             className={`w-full border px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
               errors.tier ? 'border-red-500' : 'border-gray-300'
             }`}

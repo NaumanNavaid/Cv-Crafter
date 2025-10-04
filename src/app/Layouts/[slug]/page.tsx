@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 // Define the proper types for Next.js 15
@@ -66,13 +67,23 @@ export default async function LayoutDetailPage({ params }: PageProps) {
       <div className="max-w-4xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold mb-4">{layout.name}</h2>
         <p className="text-gray-600 mb-8">{layout.description}</p>
-        <Image
-          src={layout.image}
-          alt={layout.name}
-          width={700}
-          height={900}
-          className="mx-auto"
-        />
+        <div className="max-w-[700px] mx-auto flex items-center justify-center bg-white p-4 rounded-lg border border-gray-200">
+          <Image
+            src={layout.image}
+            alt={layout.name}
+            width={700}
+            height={900}
+            className="w-full h-auto object-contain"
+          />
+        </div>
+        <div className="mt-8">
+          <Link 
+            href="/resume-builder" 
+            className="inline-block bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300"
+          >
+            Use This Layout for My Resume
+          </Link>
+        </div>
       </div>
     </section>
   );
