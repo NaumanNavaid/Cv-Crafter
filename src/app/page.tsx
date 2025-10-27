@@ -13,7 +13,7 @@ const Page = () => {
   return (
     <div className="bg-white min-h-screen">
       <Head>
-        {/* ✅ Google verification */}
+       
        <meta name="google-site-verification" content="6qojGTrZXFpTN3bK8cBDV86dxQ_HPmIMcvOTuYDfqE8" />
 
         {/* ✅ Favicon + Logo (use lowercase filenames for safety) */}
@@ -21,18 +21,7 @@ const Page = () => {
         <link rel="icon" href="/Logo.png" sizes="512x512" type="image/png" />
 
         {/* ✅ Organization Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "CV Crafter",
-              url: "https://www.cvcrafterpk.com",
-              logo: "https://www.cvcrafterpk.com/logo.png",
-            }),
-          }}
-        />
+      
       </Head>
 
       <main className="bg-white">
