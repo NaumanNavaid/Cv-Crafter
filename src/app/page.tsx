@@ -14,10 +14,7 @@ const Page = () => {
     <div className="bg-white min-h-screen">
       <Head>
         {/* ✅ Google verification */}
-        <meta
-          name="google-site-verification"
-          content="6qojGTrZXFpTN3bK8cBDV86dxQ_HPmIMcvOTuYDfqE8"
-        />
+       <meta name="google-site-verification" content="6qojGTrZXFpTN3bK8cBDV86dxQ_HPmIMcvOTuYDfqE8" />
 
         {/* ✅ Favicon + Logo (use lowercase filenames for safety) */}
         <link rel="icon" href="/favicon.ico" type="image/x-icon" />
