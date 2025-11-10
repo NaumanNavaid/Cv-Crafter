@@ -65,11 +65,11 @@ const Header = memo(() => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div 
+        <div
           ref={mobileMenuRef}
-          className="md:hidden px-4 pb-4 space-y-2 bg-white border-t border-gray-200 shadow-lg absolute left-0 right-0 z-40" 
-          role="dialog" 
-          aria-modal="true" 
+          className="md:hidden px-4 pb-4 space-y-2 bg-white border-t border-gray-200 shadow-lg absolute left-0 right-0 z-40"
+          role="dialog"
+          aria-modal="true"
           aria-label="Mobile navigation menu"
         >
           <Link href="/" className="block text-gray-700 hover:text-[hsl(var(--professional-primary))] py-3 px-4 transition-colors" aria-label="Home" onClick={handleNavigation}>Home</Link>
@@ -80,7 +80,7 @@ const Header = memo(() => {
       )}
     </header>
   );
-};
+});
 
 Header.displayName = 'Header';
 export default Header;

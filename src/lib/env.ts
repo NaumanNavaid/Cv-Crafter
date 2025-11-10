@@ -1,23 +1,28 @@
-import { z } from 'zod';
-
-const envSchema = z.object({
-  RESEND_API_KEY: z.string().min(1, 'RESEND_API_KEY is required'),
-  WHATSAPP_NUMBER: z.string().min(1, 'WHATSAPP_NUMBER is required'),
-  CONTACT_EMAIL: z.string().email('Invalid CONTACT_EMAIL format'),
-  NEXT_PUBLIC_APP_URL: z.string().url().optional(),
-});
-
-// Validate environment variables
-const envValidation = envSchema.safeParse(process.env);
-
-if (!envValidation.success) {
-  console.error('❌ Invalid environment variables:', envValidation.error.format());
-  throw new Error('Invalid environment variables');
+// Simple environment variable access without validation during build
+export function getResendApiKey(): string {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) throw new Error('Missing RESEND_API_KEY environment variable');
+  return key;
 }
 
-export const env = envValidation.data;
+export function getWhatsAppNumber(): string {
+  const number = process.env.WHATSAPP_NUMBER;
+  if (!number) throw new Error('Missing WHATSAPP_NUMBER environment variable');
+  return number;
+}
 
-// Legacy function for backward compatibility
-export function getResendApiKey(): string {
-  return env.RESEND_API_KEY;
+export function getContactEmail(): string {
+  const email = process.env.CONTACT_EMAIL;
+  if (!email) throw new Error('Missing CONTACT_EMAIL environment variable');
+  return email;
+}
+
+// Runtime validation only when actually needed
+export function validateRuntimeEnv() {
+  const required = ['RESEND_API_KEY', 'WHATSAPP_NUMBER', 'CONTACT_EMAIL'];
+  const missing = required.filter(key => !process.env[key]);
+
+  if (missing.length > 0) {
+    throw new Error(`Missing required environment variables: ${missing.join(', ')}`);
+  }
 }

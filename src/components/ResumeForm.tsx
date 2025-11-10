@@ -53,12 +53,12 @@ export default function ResumeForm() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    
+
     // Clear error when user starts typing
-    if (errors[name]) {
+    if (errors[name as keyof FormErrors]) {
       setErrors(prev => {
         const newErrors = { ...prev };
-        delete newErrors[name];
+        delete newErrors[name as keyof FormErrors];
         return newErrors;
       });
     }
@@ -81,12 +81,12 @@ export default function ResumeForm() {
   const handleTierChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
-    
+
     // Clear errors when tier changes
-    if (errors[name]) {
+    if (errors[name as keyof FormErrors]) {
       setErrors(prev => {
         const newErrors = { ...prev };
-        delete newErrors[name];
+        delete newErrors[name as keyof FormErrors];
         return newErrors;
       });
     }

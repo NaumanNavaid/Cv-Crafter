@@ -49,7 +49,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true });
   } catch (err: any) {
-    console.error('Email failed:', err);
+    // Log error silently - consider using a proper logging service in production
     return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
   }
 }
