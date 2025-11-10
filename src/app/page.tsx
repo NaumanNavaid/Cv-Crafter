@@ -1,5 +1,4 @@
-import React from 'react'
-import Head from 'next/head'
+import { Metadata } from 'next'
 import Hero from '@/components/Hero'
 import FeaturesSection from '@/components/Featuressection'
 import Steps from '@/components/Steps'
@@ -9,21 +8,31 @@ import WhatsAppContact from '@/components/whatsapp'
 import TestimonialsSection from '@/components/Testimonials'
 import FAQSection from '@/components/FAQSection'
 
+export const metadata: Metadata = {
+  title: "CV Crafter – Create Professional ATS-Friendly Resumes Online",
+  description: "Build modern, ATS-friendly resumes with customizable templates. Choose from professional layouts, get expert review, and land your dream job.",
+  keywords: "resume builder, CV creator, ATS-friendly resume, professional templates, job application",
+  openGraph: {
+    title: "CV Crafter – Professional Resume Builder",
+    description: "Create stunning, ATS-friendly resumes in minutes with our professional templates",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  verification: {
+    google: "6qojGTrZXFpTN3bK8cBDV86dxQ_HPmIMcvOTuYDfqE8",
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/Logo.png',
+  },
+}
+
 const Page = () => {
   return (
     <div className="bg-white min-h-screen">
-      <Head>
-       
-       <meta name="google-site-verification" content="6qojGTrZXFpTN3bK8cBDV86dxQ_HPmIMcvOTuYDfqE8" />
-
-        {/* ✅ Favicon + Logo (use lowercase filenames for safety) */}
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="icon" href="/Logo.png" sizes="512x512" type="image/png" />
-
-        {/* ✅ Organization Schema */}
-      
-      </Head>
-
       <main className="bg-white">
         <Hero />
         <FeaturesSection />

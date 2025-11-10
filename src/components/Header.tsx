@@ -1,35 +1,34 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 
-const Header = () => {
+const Header = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   // Close mobile menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+      setIsOpen(false);
+    }
+  }, []);
 
+  useEffect(() => {
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
     }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isOpen]);
+  }, [isOpen, handleClickOutside]);
 
   // Close mobile menu when navigating
-  const handleNavigation = () => {
+  const handleNavigation = useCallback(() => {
     setIsOpen(false);
-  };
+  }, []);
 
   return (
     <header className="w-full bg-white shadow-md sticky top-0 z-50">
@@ -83,4 +82,5 @@ const Header = () => {
   );
 };
 
+Header.displayName = 'Header';
 export default Header;

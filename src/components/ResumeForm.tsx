@@ -3,6 +3,22 @@
 import React, { useState } from 'react';
 import { z } from 'zod';
 
+// TypeScript interfaces for better type safety
+interface ResumeFormData {
+  fullName: string;
+  email: string;
+  phone: string;
+  jobTitle: string;
+  experience: string;
+  education: string;
+  skills: string;
+  summary: string;
+  tier: string;
+  layout: string;
+}
+
+type FormErrors = Partial<Record<keyof ResumeFormData, string>>;
+
 const resumeSchema = z.object({
   fullName: z.string().min(2, { message: 'Full name is required' }),
   email: z.string().email({ message: 'Please enter a valid email' }),
@@ -16,7 +32,7 @@ const resumeSchema = z.object({
 });
 
 export default function ResumeForm() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ResumeFormData>({
     fullName: '',
     email: '',
     phone: '',
@@ -28,10 +44,10 @@ export default function ResumeForm() {
     tier: '',
     layout: '',  // This will be used as the primary layout for Basic tier
   });
-  
+
   const [selectedLayouts, setSelectedLayouts] = useState<string[]>([]);
-  
-  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
