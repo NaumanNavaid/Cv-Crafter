@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { z } from 'zod';
+import { useSocialTracking } from './SocialTracking';
 
 // TypeScript interfaces for better type safety
 interface ResumeFormData {
@@ -32,6 +33,8 @@ const resumeSchema = z.object({
 });
 
 export default function ResumeForm() {
+  const { trackLeadSocial, trackButtonClick, trackFormSubmission } = useSocialTracking();
+
   const [formData, setFormData] = useState<ResumeFormData>({
     fullName: '',
     email: '',
@@ -187,6 +190,29 @@ Thank you for your submission! Our expert will create your resume shortly.
     if (selectedLayouts.length > maxLayouts) {
       setErrors({ layout: `You can only select up to ${maxLayouts} layout${maxLayouts !== 1 ? 's' : ''} for ${formData.tier} tier` });
       return;
+    }
+
+    // Track WhatsApp submission as a lead
+    trackLeadSocial();
+    trackButtonClick('WhatsApp Submit', 'Resume Form');
+    trackFormSubmission('WhatsApp Resume', true);
+
+    // Track the specific tier and layouts selected
+    const tierValues: Record<string, number> = {
+      'Basic': 0,
+      'Standard': 9.99,
+      'Premium': 19.99
+    };
+
+    // Track as a conversion with value
+    if (typeof window !== 'undefined' && window.fbq && process.env.NODE_ENV === 'production') {
+      window.fbq('track', 'Purchase', {
+        value: tierValues[formData.tier] || 0,
+        currency: 'USD',
+        content_name: `Resume ${formData.tier} Plan - ${selectedLayouts.length} Templates`,
+        content_type: 'service',
+        content_ids: selectedLayouts,
+      });
     }
 
     // Format the message and redirect to WhatsApp

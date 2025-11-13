@@ -7,6 +7,7 @@ import LayoutTeaser from '@/components/Layoutteaser'
 import WhatsAppContact from '@/components/whatsapp'
 import TestimonialsSection from '@/components/Testimonials'
 import FAQSection from '@/components/FAQSection'
+import BlogTeaser from '@/components/BlogTeaser'
 
 export const metadata: Metadata = {
   title: "CV Crafter – Create Professional ATS-Friendly Resumes Online",
@@ -38,6 +39,7 @@ const Page = () => {
         <FeaturesSection />
         <Steps />
         <TestimonialsSection />
+        <BlogTeaser />
         <PricingTeaser />
         <LayoutTeaser />
         <FAQSection />

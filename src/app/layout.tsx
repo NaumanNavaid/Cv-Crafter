@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import WhatsAppButton from "@/components/WhatsappButton";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { SocialTracking } from "@/components/SocialTracking";
+import { WebsiteStructuredData, OrganizationStructuredData, ServiceStructuredData } from "@/components/StructuredData";
 import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,10 +31,29 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* SEO and Analytics */}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#2563eb" />
+        <link rel="canonical" href="https://cv-crafter.com" />
+
+        {/* Structured Data */}
+        <WebsiteStructuredData />
+        <OrganizationStructuredData />
+        <ServiceStructuredData />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Facebook Pixel Tracking - Only in Production */}
+        {process.env.NODE_ENV === 'production' && (
+          <SocialTracking
+            facebookPixelId={process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID!}
+          />
+        )}
+
         <Header/>
+        <Breadcrumbs />
         {children}
         <WhatsAppButton/>
         <Footer/>
