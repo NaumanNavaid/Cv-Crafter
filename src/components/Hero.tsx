@@ -62,32 +62,34 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Image - LCP Optimized */}
+          {/* Image - CLS + LCP Optimized */}
           <div className="w-full lg:w-1/2 flex justify-center">
-            <div className="relative">
-              {/* Background decoration - optimized for LCP */}
+            {/* Reserve space to prevent CLS */}
+            <div className="relative w-full max-w-md lg:max-w-lg aspect-square">
+              {/* Background decoration - optimized for LCP + CLS */}
               <div className="absolute inset-0 bg-blue-200 rounded-xl transform rotate-6 opacity-75"></div>
               <div className="absolute inset-0 bg-blue-300 rounded-xl transform -rotate-6 opacity-75"></div>
 
-              {/* Main image - LCP optimized */}
-              <div className="relative">
+              {/* Main image - CLS + LCP optimized */}
+              <div className="relative w-full h-full">
                 <Image
                   src="/resume-preview.png"
                   alt="Professional Resume Preview"
                   width={600}
                   height={600}
-                  className="w-full h-auto max-w-md lg:max-w-lg object-cover rounded-xl shadow-2xl"
+                  className="w-full h-full object-cover rounded-xl shadow-2xl"
                   priority
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
                   placeholder="blur"
                   blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R/xjqNzTakmeZQQM5xQB5Df/9k="
+                  fill
                 />
 
                 {/* Floating badges - optimized with will-change for performance */}
-                <div className="absolute -top-4 -right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg will-change-transform">
+                <div className="absolute -top-4 -right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg will-change-transform z-10">
                   ✓ ATS Approved
                 </div>
-                <div className="absolute -bottom-4 -left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg will-change-transform">
+                <div className="absolute -bottom-4 -left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg will-change-transform z-10">
                   25+ Templates
                 </div>
               </div>
