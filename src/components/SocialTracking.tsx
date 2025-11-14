@@ -13,7 +13,7 @@ interface SocialTrackingProps {
   facebookPixelId?: string;
 }
 
-// Facebook Pixel script initialization
+// Facebook Pixel script initialization - MINIMAL VERSION FOR FORM TRACKING ONLY
 const FB_PIXEL_SCRIPT = `
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -30,9 +30,9 @@ export function SocialTracking({
 }: SocialTrackingProps) {
   useEffect(() => {
     if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production' && facebookPixelId) {
-      // Inject Facebook Pixel script
+      // Inject Facebook Pixel script - NO PageView tracking
       const script = document.createElement('script');
-      script.innerHTML = FB_PIXEL_SCRIPT + `fbq('init', '${facebookPixelId}');fbq('track', 'PageView');`;
+      script.innerHTML = FB_PIXEL_SCRIPT + `fbq('init', '${facebookPixelId}');`;
       document.head.appendChild(script);
 
       // Initialize fbq function
@@ -49,94 +49,20 @@ export function SocialTracking({
   return null;
 }
 
-// Custom hook for Facebook tracking
+// Custom hook for Facebook tracking - FORM CLICKS ONLY
 export const useSocialTracking = () => {
-  // Facebook Pixel tracking
-  const trackFacebookEvent = (eventName: string, parameters?: Record<string, any>) => {
+  // ONLY track form clicks in the builder - nothing else
+  const trackFormClick = (formType: string, buttonName: string) => {
     if (typeof window !== 'undefined' && window.fbq && process.env.NODE_ENV === 'production') {
-      window.fbq('track', eventName, parameters);
-    }
-  };
-
-  const trackFacebookCustom = (eventName: string, parameters?: Record<string, any>) => {
-    if (typeof window !== 'undefined' && window.fbq && process.env.NODE_ENV === 'production') {
-      window.fbq('trackCustom', eventName, parameters);
-    }
-  };
-
-  // Common Facebook events
-  const trackResumeCreatedSocial = (templateType: string, pricingTier: string, value: number) => {
-    trackFacebookEvent('Purchase', {
-      value: value,
-      currency: 'USD',
-      content_name: 'Resume Creation',
-      content_category: 'Service',
-      content_type: templateType,
-    });
-  };
-
-  const trackLeadSocial = () => {
-    trackFacebookEvent('Lead', {
-      content_name: 'Contact Form Submission',
-      content_category: 'Lead Generation',
-    });
-  };
-
-  const trackViewContent = (contentType: string, contentId: string) => {
-    trackFacebookEvent('ViewContent', {
-      content_type: contentType,
-      content_ids: [contentId],
-    });
-  };
-
-  const trackAddToCart = (pricingTier: string, value: number) => {
-    trackFacebookEvent('AddToCart', {
-      value: value,
-      currency: 'USD',
-      content_name: pricingTier + ' Plan',
-      content_category: 'Service',
-    });
-  };
-
-  const trackInitiateCheckout = (value: number, pricingTier: string) => {
-    trackFacebookEvent('InitiateCheckout', {
-      value: value,
-      currency: 'USD',
-      content_name: pricingTier + ' Plan',
-      content_category: 'Service',
-    });
-  };
-
-  const trackButtonClick = (buttonName: string, pageLocation: string) => {
-    trackFacebookCustom('ButtonClick', {
-      button_name: buttonName,
-      page_location: pageLocation,
-    });
-  };
-
-  const trackFormSubmission = (formType: string, success: boolean) => {
-    trackFacebookCustom('FormSubmission', {
-      form_type: formType,
-      success: success,
-    });
-  };
-
-  const trackPageView = () => {
-    if (typeof window !== 'undefined' && window.fbq && process.env.NODE_ENV === 'production') {
-      window.fbq('track', 'PageView');
+      window.fbq('trackCustom', 'FormClick', {
+        form_type: formType,
+        button_name: buttonName,
+        page_location: 'resume-builder'
+      });
     }
   };
 
   return {
-    trackFacebookEvent,
-    trackFacebookCustom,
-    trackResumeCreatedSocial,
-    trackLeadSocial,
-    trackViewContent,
-    trackAddToCart,
-    trackInitiateCheckout,
-    trackButtonClick,
-    trackFormSubmission,
-    trackPageView,
+    trackFormClick,
   };
 };

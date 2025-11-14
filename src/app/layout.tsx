@@ -7,14 +7,20 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { SocialTracking } from "@/components/SocialTracking";
 import { WebsiteStructuredData, OrganizationStructuredData, ServiceStructuredData } from "@/components/StructuredData";
 import "./globals.css";
+
+// LCP optimized font loading with preload and display-swap
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: 'swap',
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: 'swap',
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -36,6 +42,15 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#2563eb" />
         <link rel="canonical" href="https://cv-crafter.com" />
+
+        {/* LCP Optimizations - Resource Hints */}
+        <link rel="preload" href="/resume-preview.png" as="image" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="//connect.facebook.net" />
 
         {/* Structured Data */}
         <WebsiteStructuredData />
